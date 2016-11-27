@@ -1,3 +1,3 @@
 get '/' do
-  erb :index
+  send_joke_text
 end
