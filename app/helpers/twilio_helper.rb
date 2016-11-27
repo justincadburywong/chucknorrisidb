@@ -1,5 +1,5 @@
-require 'net/HTTP'
-require 'JSON'
+require 'net/http'
+require 'json'
 
 def boot_twilio
   account_sid = TWILIO_SID
