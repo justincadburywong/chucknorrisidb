@@ -27,9 +27,9 @@ APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 
 APP_NAME = APP_ROOT.basename.to_s
 
-TWILIO_SID = ENV['twilio_sid']
-TWILIO_TOKEN = ENV['twilio_token']
-TWILIO_NUMBER = ENV['twilio_number']
+TWILIO_SID = ENV['TWILIO_SID']
+TWILIO_TOKEN = ENV['TWILIO_TOKEN']
+TWILIO_NUMBER = ENV['TWILIO_NUMBER']
 
 configure do
   # By default, Sinatra assumes that the root is the file that calls the configure block.
