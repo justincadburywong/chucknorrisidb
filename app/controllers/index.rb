@@ -1,8 +1,9 @@
 post '/' do
-  p params["body"]
-  if params['body'].downcase.include? 'nerdy' == true
+  body = params["Body"]
+  p body
+  if body.downcase.include? 'nerdy'
     send_nerdy_text
-  elsif params['body'].downcase.include? 'dirty' == true
+  elsif body.downcase.include? 'dirty'
     send_dirty_text
   else
     send_joke_text

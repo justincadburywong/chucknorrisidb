@@ -10,39 +10,31 @@ helpers do
     @from_number = params["From"]
   end
 
-  def send_nerdy_text
-    url = 'http://api.icndb.com/jokes/random?LimitTo=[nerdy]'
-    uri = URI(url)
+  def send_message
+    uri = URI(@url)
     response = Net::HTTP.get(uri)
-    boot_twilio
     @client.account.messages.create(
       :from => @twilio_number,
       :to => @from_number,
       :body => JSON.parse(response)['value']['joke']
       )
+  end
+
+  def send_nerdy_text
+    @url = 'http://api.icndb.com/jokes/random?limitTo=[nerdy]'
+    boot_twilio
+    send_message
   end
 
   def send_dirty_text
-    url = 'http://api.icndb.com/jokes/random?LimitTo=[explicit]'
-    uri = URI(url)
-    response = Net::HTTP.get(uri)
+    @url = 'http://api.icndb.com/jokes/random?limitTo=[explicit]'
     boot_twilio
-    @client.account.messages.create(
-      :from => @twilio_number,
-      :to => @from_number,
-      :body => JSON.parse(response)['value']['joke']
-      )
+    send_message
   end
 
   def send_joke_text
-    url = 'http://api.icndb.com/jokes/random?exclude=[explicit]'
-    uri = URI(url)
-    response = Net::HTTP.get(uri)
+    @url = 'http://api.icndb.com/jokes/random?exclude=[explicit]'
     boot_twilio
-    @client.account.messages.create(
-      :from => @twilio_number,
-      :to => @from_number,
-      :body => JSON.parse(response)['value']['joke']
-      )
+    send_message
   end
 end
