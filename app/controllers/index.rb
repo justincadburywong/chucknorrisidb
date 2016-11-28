@@ -1,6 +1,6 @@
 post '/' do
   body = params["Body"]
-  p body
+  p params
   if body.downcase.include? 'nerdy'
     send_nerdy_text
   elsif body.downcase.include? 'dirty'
