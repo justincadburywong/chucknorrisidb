@@ -11,7 +11,7 @@ helpers do
   end
 
   def send_nerdy_text
-    url = 'http://api.icndb.com/jokes/random?LimitTo=[nerdy]'
+    url = 'http://api.icndb.com/jokes/random?limitTo=[nerdy]'
     uri = URI(url)
     response = Net::HTTP.get(uri)
     boot_twilio
@@ -23,7 +23,7 @@ helpers do
   end
 
   def send_dirty_text
-    url = 'http://api.icndb.com/jokes/random?LimitTo=[explicit]'
+    url = 'http://api.icndb.com/jokes/random?limitTo=[explicit]'
     uri = URI(url)
     response = Net::HTTP.get(uri)
     boot_twilio
