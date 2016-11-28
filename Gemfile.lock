@@ -97,6 +97,7 @@ DEPENDENCIES
   faker
   pg
   pry-byebug
+  rack-test
   rake
   rspec
   shotgun
@@ -104,6 +105,9 @@ DEPENDENCIES
   sinatra-contrib
   thin
   twilio-ruby
+
+RUBY VERSION
+   ruby 2.2.5p319
 
 BUNDLED WITH
    1.12.5
