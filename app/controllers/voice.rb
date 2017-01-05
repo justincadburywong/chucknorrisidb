@@ -13,6 +13,6 @@ end
 
 post '/voice/forward' do
   p params
-  @collected_number = params['digits'] - '#'
+  @collected_number = params['Digits']
   forward_call
 end
