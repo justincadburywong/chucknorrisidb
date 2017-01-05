@@ -7,7 +7,7 @@ helpers do
 
   def gather_number
     Twilio::TwiML::Response.new do |r|
-      r.Gather :numDigits => '#', :action => '/voice/forward', :method => 'post' do |g|
+      r.Gather :finishOnKey => '#', :timeout => '10', :action => '/voice/forward', :method => 'post' do |g|
         g.Say 'Dial the number you wish to connect to.'
         g.Say 'Press pound when finished.'
         end
