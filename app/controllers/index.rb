@@ -1,3 +1,7 @@
+get '/' do
+  erb :'chuck'
+end
+
 post '/' do
   body = params["Body"]
   p params
@@ -8,4 +12,5 @@ post '/' do
   else
     send_joke_text
   end
+  redirect '/'
 end

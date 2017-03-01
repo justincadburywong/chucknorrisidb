@@ -13,11 +13,13 @@ helpers do
   def send_message
     uri = URI(@url)
     response = Net::HTTP.get(uri)
+    joke = JSON.parse(response)['value']['joke']
+    clean_response = joke.gsub('&quot;', "'")
     @from_number.each do |number|
     @client.account.messages.create(
       :from => @twilio_number,
       :to => number,
-      :body => JSON.parse(response)['value']['joke']
+      :body => clean_response
       )
     end
   end
