@@ -7,21 +7,19 @@ helpers do
     auth_token = TWILIO_TOKEN
     @twilio_number = TWILIO_NUMBER
     @client = Twilio::REST::Client.new account_sid, auth_token
-    @from_number = params["From"].split(",")
+    @from_number = params["From"]
   end
 
   def send_message
     uri = URI(@url)
     response = Net::HTTP.get(uri)
     joke = JSON.parse(response)['value']['joke']
-    clean_response = joke.gsub('&quot;', "'")
-    @from_number.each do |number|
+    clean_response = joke.gsub("&quot;", "'")
     @client.account.messages.create(
       :from => @twilio_number,
-      :to => number,
+      :to => @from_number,
       :body => clean_response
       )
-    end
   end
 
   def send_nerdy_text
