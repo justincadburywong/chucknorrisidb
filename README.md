@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/justincadburywong/chucknorrisidb.svg?style=svg&circle-token=05adecf9e64d82c61e14d0ce95feadf97ffd64b5)](https://circleci.com/gh/justincadburywong/chucknorrisidb)
+[![CircleCI Status](https://circleci.com/gh/justincadburywong/chucknorrisidb.svg?style=shield&circle-token=05adecf9e64d82c61e14d0ce95feadf97ffd64b5)](https://circleci.com/gh/justincadburywong/chucknorrisidb)
 
 # ChuckNorrisIDB
 An SMS service that sends Chuck Norris jokes to your phone via the Chuck Norris Internet Database API and Twilio.
