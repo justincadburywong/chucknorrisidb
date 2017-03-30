@@ -5,15 +5,18 @@
     <title>Chuck Norris Jokes</title>
   </head>
   <body>
+    <% if @message %>
+    <div class="form"> <%=@message%> </div>
+    <% end %>
     <form class="form" action="/" method="post">
       <div class="">
         <label>Enter your phone number</label>
       </div>
-      <div class="textbox">
-        <input type="text" name="From" placeholder="ex. 4152752620">
+      <div>
+        <input class="textbox" type="text" name="From" placeholder="ex. 4152752620">
       </div>
       <div class="radio">
-        <input type="radio" name="Body" value="Normal">
+        <input type="radio" name="Body" value="Normal" checked="checked">
         <label>Normal</label>
       </div>
       <div class="radio">
@@ -24,8 +27,8 @@
         <input type="radio" name="Body" value="Dirty">
         <label>Dirty</label>
       </div>
-      <div class="submit">
-        <button type="submit">Give me a joke!</button>
+      <div>
+        <button class="submit" type="submit">Give me a joke!</button>
       </div>
     </form>
     <style media="screen">
@@ -47,14 +50,15 @@
       .textbox {
         border-radius: 5px;
         font-size: 26px;
+        width: 200px;
+        height: 40px;
+        border: 1px solid #999999;
+        padding: 5px;
+      }
+      .submit {
+        border-radius: 5px;
+        font-size: 20px;
       }
     </style>
-    <!-- <script type="text/javascript">
-      const submit = document.querySelector('.submit');
-      submit.addEventListener('click', giveJoke);
-      function giveJoke(){
-        alert("Joke Sent!")
-      }
-    </script> -->
   </body>
 </html>

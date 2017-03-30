@@ -12,5 +12,12 @@ post '/' do
   else
     send_joke_text
   end
-  redirect '/'
+  if params.length == 2
+    redirect '/success'
+  end
+end
+
+get '/success' do
+  @message = "Message sent!"
+  erb :'chuck'
 end
