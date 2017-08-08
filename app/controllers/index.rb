@@ -12,6 +12,8 @@ post '/' do
   else
     send_joke_text
   end
+
+  # if using the web interface
   if params.length == 2
     redirect '/success'
   end
