@@ -11,9 +11,10 @@ helpers do
   end
 
   def save_message(message)
-    id = JSON.parse(message)['value']['id']
-    if !Joke.find(id)
-      Joke.create()
+    bulk = JSON.parse(message)['value']
+    id = bulk['id'].to_i
+    if !Joke.find_by(number: id)
+      Joke.create(number: bulk['id'], joke: bulk['joke'], categories: bulk['categories'])
     end
   end
 
