@@ -10,16 +10,32 @@ helpers do
     @from_number = params["From"]
   end
 
-  def send_message
+  def save_message(message)
+    id = JSON.parse(message)['value']['id']
+    if !Joke.find(id)
+      Joke.create()
+    end
+  end
+
+  def get_message
     uri = URI(@url)
     response = Net::HTTP.get(uri)
-    joke = JSON.parse(response)['value']['joke']
+    save_message(response)
+  end
+
+  def clean_message
+    joke = JSON.parse(get_message)['value']['joke']
     clean_response = joke.gsub("&quot;", "'")
+  end
+
+
+  def send_message
     @client.account.messages.create(
       :from => @twilio_number,
       :to => @from_number,
-      :body => clean_response
+      :body => clean_message
       )
+      save_message
   end
 
   def send_nerdy_text
