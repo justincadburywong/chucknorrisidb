@@ -22,6 +22,7 @@ helpers do
     uri = URI(@url)
     response = Net::HTTP.get(uri)
     save_message(response)
+    return response
   end
 
   def clean_message
@@ -29,14 +30,12 @@ helpers do
     clean_response = joke.gsub("&quot;", "'")
   end
 
-
   def send_message
     @client.account.messages.create(
       :from => @twilio_number,
       :to => @from_number,
       :body => clean_message
       )
-      save_message
   end
 
   def send_nerdy_text
