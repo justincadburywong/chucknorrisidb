@@ -10,23 +10,20 @@ helpers do
     @from_number = params["From"]
   end
 
-  def save_message(message)
-    bulk = JSON.parse(message)['value']
-    id = bulk['id'].to_i
-    if !Joke.find_by(number: id)
-      Joke.create(number: bulk['id'], joke: bulk['joke'], categories: bulk['categories'])
+  def save_message(response)
+    if !Joke.find_by(joke: response['joke'])
+      Joke.create(joke: response['value']['joke'], categories: response['value']['categories'])
     end
   end
 
   def get_message
     uri = URI(@url)
     response = Net::HTTP.get(uri)
-    save_message(response)
-    return response
+    parsed = JSON.parse(response)
   end
 
   def clean_message
-    joke = JSON.parse(get_message)['value']['joke']
+    joke = get_message['value']['joke'] || Joke.rand()
     clean_response = joke.gsub("&quot;", "'")
   end
 
@@ -36,6 +33,18 @@ helpers do
       :to => @from_number,
       :body => clean_message
       )
+  end
+
+  def scrape_api
+    counter = 1
+    700.times do
+      @url = "http://api.icndb.com/jokes/#{counter}"
+      response = get_message
+      if response['type'] == "success"
+        save_message(response)
+      end
+      counter +=1
+    end
   end
 
   def send_nerdy_text
@@ -55,4 +64,5 @@ helpers do
     boot_twilio
     send_message
   end
+
 end
