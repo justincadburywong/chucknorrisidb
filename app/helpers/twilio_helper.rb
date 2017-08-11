@@ -12,7 +12,7 @@ helpers do
     @client.account.messages.create(
       :from => @twilio_number,
       :to => @from_number,
-      :body => clean_message
+      :body => fetch_joke
       )
   end
 
