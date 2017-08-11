@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Chuck Norris Jokes</title>
+  </head>
+  <body>
+    <% if @message %>
+    <div class="form"> <%=@message%> </div>
+    <% end %>
+    <form class="form" action="/scrape" method="post">
+      <div>
+        <button class="submit" type="submit">Scrape!</button>
+      </div>
+    </form>
+
+    <style media="screen">
+      html {
+        box-sizing: border-box;
+        /*background: gray;*/
+        /*background: url('../../chuck_norris_578999_by_shinikami1-d6wjd8i.png') no-repeat center center fixed;*/
+        font-family:'helvetica neue';
+        font-size: 30px;
+        font-weight: 200;
+      }
+      div {
+        text-align: center;
+        padding: 10px;
+      }
+      .radio {
+        display: block;
+      }
+      .textbox {
+        border-radius: 5px;
+        font-size: 26px;
+        width: 200px;
+        height: 40px;
+        border: 1px solid #999999;
+        padding: 5px;
+      }
+      .submit {
+        border-radius: 5px;
+        font-size: 20px;
+      }
+    </style>
+  </body>
+</html>
