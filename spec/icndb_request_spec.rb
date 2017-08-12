@@ -1,11 +1,15 @@
 require 'spec_helper'
 
 describe 'External request' do
-  it 'queries ICNDB jokes' do
+  context 'From ICNDB' do
     uri = URI('https://api.icndb.com/jokes/random')
+    let(:response) { Net::HTTP.get_response(uri) }
 
-    response = Net::HTTP.get(uri)
-
-    expect(response).to be_an_instance_of(String)
+    it 'queries ICNDB jokes' do
+      expect(response.body).to be_an_instance_of(String)
+    end
+    it 'has a valid response code' do
+      expect(response.code).to eq("200")
+    end
   end
 end
