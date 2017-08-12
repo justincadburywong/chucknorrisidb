@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'webmock/rspec'
 
 # All our specs should require 'spec_helper' (this file)
 
@@ -8,3 +9,13 @@ require 'rubygems'
 ENV['RACK_ENV'] ||= 'test'
 
 require File.expand_path("../../config/environment", __FILE__)
+
+ # Webmock.disable_net_connect!(allow_localhost: true) 
+
+ RSpec.configure do |config|
+   config.before(:each) do
+     stub_request(:get, /api.icndb.com/).
+       with(headers: {'Accept'=>'*/*', 'User-Agent'=>'Ruby'}).
+       to_return(status: 200, body: "stubbed response", headers: {})
+   end
+ end
