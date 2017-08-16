@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'json'
 
 describe "ChuckNorrisIDB Controller" do
   context "get /" do
@@ -20,23 +21,35 @@ describe "ChuckNorrisIDB Controller" do
     end
   end
 
-  context "post /" do
-    it "sends a request" do
-      post '/', :From => 4155552200, :Body => "Nerdy"
-      expect(last_response.status).to be_ok
+  # context "post /" do
+  #   it "sends a request" do
+  #     post '/', :From => 4155552200, :Body => "Nerdy"
+  #     expect(last_response.status).to be_ok
+  #   end
+  #   it "redirects back to /success" do
+  #     post '/', :From => 4155552200, :Body => "Nerdy"
+  #     expect(last_response.redirect?).to be true
+  #     follow_redirect!
+  #     expect(last_request.path).to eq('/success')
+  #   end
+  # end
+
+  context "post / with missing params" do
+    it "returns status 302" do
+      post '/', :Body => "Nerdy"
+      expect(last_response.status).to eq 302
     end
-    it "redirects back to /" do
-      post '/', :From => 4155552200, :Body => "Nerdy"
-      expect(last_response.redirect?).to be_true
+    it "redirects to /fail" do
+      post '/', :Body => "Nerdy"
+      expect(last_response.redirect?).to be true
       follow_redirect!
-      expect(last_request.path).to eq('/')
-    end
-    it "with missing params" do
-      post '/'
-      expect(last_response.status).to eq 400
+      expect(last_request.path).to eq('/fail')
     end
   end
 
   context "get /success" do
+  end
+
+  context "get /fail" do
   end
 end
