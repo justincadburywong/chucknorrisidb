@@ -18,9 +18,9 @@ describe 'External request' do
     it 'has a valid response code' do
       expect(response.code).to eq("200")
     end
-    it 'has a valid id datatype' do
-      expect(JSON.parse(response.body)['value']['id']).to be_an_instance_of(Integer)
-    end
+    # it 'has a valid id datatype' do
+    #   expect(JSON.parse(response.body)['value']['id']).to be_an_instance_of(Integer)
+    # end
     it 'has a valid id' do
       expect(JSON.parse(response.body)['value']['id']).to eq(454)
     end
