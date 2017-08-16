@@ -1,0 +1,11 @@
+machine:
+  environment:
+    DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/circle_test
+database:
+  override:
+    - mysql -u ubuntu circle_test < my-database-setup.sql
+test:
+  override:
+    - bundle exec rspec --color --require spec_helper --format documentation
+      environment:
+        RAKE_ENV: test
