@@ -32,9 +32,10 @@ helpers do
     counter = 1
     700.times do
       @url = "http://api.icndb.com/jokes/#{counter}"
-      response = fetch_joke
-      if response.body['type'] == "success"
-        save_joke(response.body)
+      uri = URI(@url)
+      response = Net::HTTP.get_response(uri)
+      if JSON.parse(response.body)['type'] == "success"
+        save_joke(JSON.parse(response.body))
       end
       counter +=1
     end
