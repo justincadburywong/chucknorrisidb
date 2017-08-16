@@ -25,6 +25,7 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     daemons (1.2.3)
+    database_cleaner (1.5.3)
     diff-lcs (1.2.5)
     dotenv (2.1.1)
     eventmachine (1.2.0.1)
@@ -104,6 +105,7 @@ DEPENDENCIES
   activerecord
   activesupport
   bcrypt
+  database_cleaner
   dotenv
   faker
   pg
