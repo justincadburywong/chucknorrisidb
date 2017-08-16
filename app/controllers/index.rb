@@ -3,6 +3,9 @@ get '/' do
 end
 
 post '/' do
+  if !params["From"]
+    redirect '/fail'
+  end
   body = params["Body"]
   p params
   if body.downcase.include? 'nerdy'
@@ -25,6 +28,6 @@ get '/success' do
 end
 
 get '/fail' do
-  @message = "Try again, you missed something"
+  @message = "Try again, you missed something."
   erb :'index'
 end
