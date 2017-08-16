@@ -10,6 +10,10 @@ describe "ChuckNorrisIDB Controller" do
       get '/'
       expect(last_response.status).to eq 200
     end
+    it "displays the correct path" do
+      get '/'
+      expect(last_request.path).to eq('/')
+    end
     it "displays homepage content" do
       get '/'
       expect(last_response.body).to include("Enter your phone number")
@@ -31,5 +35,8 @@ describe "ChuckNorrisIDB Controller" do
       post '/'
       expect(last_response.status).to eq 400
     end
+  end
+
+  context "get /success" do
   end
 end
