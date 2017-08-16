@@ -1,5 +1,5 @@
 get '/' do
-  erb :'chuck'
+  erb :'index'
 end
 
 post '/' do
@@ -21,5 +21,10 @@ end
 
 get '/success' do
   @message = "Message sent!"
-  erb :'chuck'
+  erb :'index'
+end
+
+get '/fail' do
+  @message = "Try again, you missed something"
+  erb :'index'
 end
