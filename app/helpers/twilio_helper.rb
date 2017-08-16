@@ -1,5 +1,3 @@
-require 'net/http'
-require 'json'
 
 helpers do
   def boot_twilio
@@ -11,14 +9,10 @@ helpers do
   end
 
   def send_message
-    uri = URI(@url)
-    response = Net::HTTP.get(uri)
-    joke = JSON.parse(response)['value']['joke']
-    clean_response = joke.gsub("&quot;", "'")
     @client.account.messages.create(
       :from => @twilio_number,
       :to => @from_number,
-      :body => clean_response
+      :body => fetch_joke
       )
   end
 
@@ -39,4 +33,5 @@ helpers do
     boot_twilio
     send_message
   end
+
 end
