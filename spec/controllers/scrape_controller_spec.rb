@@ -1,7 +1,7 @@
 
   require 'spec_helper'
 
-  describe "ChuckNorrisIDB Controller" do
+  describe "Scrape Controller" do
     context "get /scrape" do
       it "loads scrape page" do
         get '/scrape'

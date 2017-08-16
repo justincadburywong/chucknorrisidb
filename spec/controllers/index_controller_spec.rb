@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'json'
 
-describe "ChuckNorrisIDB Controller" do
+describe "Index Controller" do
   context "get /" do
     it "loads homepage" do
       get '/'
@@ -34,7 +34,7 @@ describe "ChuckNorrisIDB Controller" do
   #   end
   # end
 
-  context "post / with missing params" do
+  context "post '/' with missing params" do
     it "returns status 302" do
       post '/', :Body => "Nerdy"
       expect(last_response.status).to eq 302
