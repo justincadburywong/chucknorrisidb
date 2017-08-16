@@ -1,0 +1,4 @@
+database:
+  override:
+    - mysql -u ubuntu circle_test < my-database-setup.sql
+    - bundle exec rake db:create db:schema:load --trace
