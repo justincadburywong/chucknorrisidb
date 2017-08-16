@@ -1,8 +1,4 @@
 database:
   override:
-    - mysql -u ubuntu circle_test < my-database-setup.sql
-test:
-  override:
-    - bundle exec rspec --color --require spec_helper --format documentation
-      environment:
-        RAKE_ENV: test
+    - bundle exec rake db:create
+    - bundle exec rake db:migrate --trace
