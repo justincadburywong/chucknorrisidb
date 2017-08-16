@@ -1,8 +1,11 @@
 get '/' do
-  erb :'chuck'
+  erb :'index'
 end
 
 post '/' do
+  if !params["From"]
+    redirect '/fail'
+  end
   body = params["Body"]
   p params
   if body.downcase.include? 'nerdy'
@@ -12,6 +15,8 @@ post '/' do
   else
     send_joke_text
   end
+
+  # if using the web interface
   if params.length == 2
     redirect '/success'
   end
@@ -19,5 +24,10 @@ end
 
 get '/success' do
   @message = "Message sent!"
-  erb :'chuck'
+  erb :'index'
+end
+
+get '/fail' do
+  @message = "Try again, you missed something."
+  erb :'index'
 end
