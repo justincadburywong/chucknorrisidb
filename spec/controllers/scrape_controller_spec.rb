@@ -17,7 +17,7 @@
       end
       it "displays scrape content" do
         get '/scrape'
-        expect(last_response.body).to include("All this button does is add any new jokes to the local database.")
+        expect(last_response.body).to include("This button saves any new jokes to the local database.")
       end
     end
 
