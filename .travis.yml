@@ -11,4 +11,4 @@ before_install:
 rvm:
   - 2.2.5
 
-script: ./.travis.sh
+script: bundle exec rspec -fd
