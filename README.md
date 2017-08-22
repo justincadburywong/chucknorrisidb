@@ -11,6 +11,6 @@ You can also send the word 'nerdy' to get a nerdy joke, or the word 'dirty' for 
 # How It Works
 An SMS message is sent to the phone number above.  Twilio sends a webhook request to this API written in Ruby on Sinatra, which reaches out to the Internet Chuck Norris Database, retrieves a JSON payload, and sends it back to Twilio, to be delivered to your SMS enabled device.
 
-<img src="ChuckNorrisIDB.png" width="800px" alt="flowchart"
+<img src="ChuckNorrisIDB.png" width="800px" alt="flowchart">
 
 <img src="chuck-norris-dont-write-code.jpg" width="800px" alt="chuck_norris">
