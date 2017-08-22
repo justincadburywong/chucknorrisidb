@@ -11,4 +11,7 @@ before_install:
 rvm:
   - 2.2.5
 
-script: bundle exec rspec -fd
+script:
+  - bundle exec rake db:create RACK_ENV="test"
+  - bundle exec db:migrate
+  - bundle exec rspec -fd
