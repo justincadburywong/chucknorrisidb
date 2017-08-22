@@ -13,5 +13,5 @@ rvm:
 
 script:
   - bundle exec rake db:create RACK_ENV="test"
-  - bundle exec db:migrate
-  - bundle exec rspec -fd
+  - bundle exec rake db:migrate
+  - bundle exec rspec -fdc
