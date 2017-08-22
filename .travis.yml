@@ -1,0 +1,14 @@
+
+language: ruby
+
+dist: trusty
+sudo: false
+
+before_install:
+  - rvm get head
+  - gem install bundler
+
+rvm:
+  - 2.2.5
+
+script: ./.travis.sh
