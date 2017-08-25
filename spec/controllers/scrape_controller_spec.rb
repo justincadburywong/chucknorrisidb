@@ -21,32 +21,40 @@
       end
     end
 
-    # context "post /scrape" do
-    #   it "sends a request" do
-    #     post '/', :From => 4155552200, :Body => "Nerdy"
-    #     expect(last_response.status).to be_ok
-    #   end
-    #   it "redirects back to /" do
-    #     post '/', :From => 4155552200, :Body => "Nerdy"
-    #     expect(last_response.redirect?).to be_true
-    #     follow_redirect!
-    #     expect(last_request.path).to eq('/scrape')
-    #   end
-    #   it "with missing params" do
-    #     post '/'
-    #     expect(last_response.status).to eq 400
-    #   end
-    # end
+    context "post /scrape" do
+      before(:each) do
+        stub_request(:get, /api.icndb.com/).
+          with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Host'=>'api.icndb.com', 'User-Agent'=>'Ruby' }).
+          to_return(status: 200, body: {type: 'success', value: {id: 454, joke: "Chuck Norris's first program was kill -9.", categories: ['nerdy']}}.to_json, headers: { 'Content-Type': 'application/json' })
+      end
+      it "sends a request" do
+        post '/scrape'
+        expect(last_response.status).to eq 302
+      end
+      it "redirects back to /scrape_success" do
+        post '/scrape'
+        expect(last_response.redirect?).to be true
+        follow_redirect!
+        expect(last_request.path).to eq('/scrape_success')
+      end
+      # it reaches out to the icndb
+      # it saves new data to the db
+      # it does not save data if it exists
+    end
 
 
     context "get /scrape_success" do
       it "loads scrape page" do
-        get '/scrape'
+        get '/scrape_success'
         expect(last_response).to be_ok
       end
       it "returns status 200" do
-        get '/scrape'
+        get '/scrape_success'
         expect(last_response.status).to eq 200
+      end
+      it "displays scrape success message" do
+        get '/scrape_success'
+        expect(last_response.body).to include("Scrape succeeded!")
       end
     end
 

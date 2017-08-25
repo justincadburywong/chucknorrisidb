@@ -2,8 +2,11 @@ require 'net/http'
 require 'json'
 
 helpers do
-  def read_joke
-    Joke.order("RANDOM()").first.joke
+  def read_joke(category)
+    # Joke.order("RANDOM()").first.joke  # is slow
+    # Joke.offset(rand(Joke.count)).first.joke # is better/faster
+    # Joke.where('categories LIKE ?', '%' + "#{category}" + '%').order("random()").first.joke
+    Joke.where('categories LIKE ?', '%' + "#{category}" + '%').offset(rand(Joke.where('categories LIKE ?', '%' + "#{category}" + '%').count)).first.joke
   end
 
   def clean_joke(string)
@@ -17,7 +20,7 @@ helpers do
       joke = JSON.parse(response.body)['value']['joke']
       return clean_joke(joke)
     else
-      clean_joke(read_joke)
+      clean_joke(read_joke(params[:Body]))
     end
   end
 
@@ -30,7 +33,7 @@ helpers do
 
   def scrape_api
     counter = 1
-    700.times do
+    100.times do
       @url = "http://api.icndb.com/jokes/#{counter}"
       uri = URI(@url)
       response = Net::HTTP.get_response(uri)

@@ -24,4 +24,5 @@ group :test do
   gem 'rack-test'
   gem 'webmock'
   gem 'database_cleaner'
+  gem 'coveralls', require: false
 end
