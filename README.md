@@ -1,5 +1,6 @@
 [![CircleCI Status](https://circleci.com/gh/justincadburywong/chucknorrisidb.svg?style=shield&circle-token=05adecf9e64d82c61e14d0ce95feadf97ffd64b5)](https://circleci.com/gh/justincadburywong/chucknorrisidb)
 [![Build Status](https://travis-ci.org/justincadburywong/chucknorrisidb.svg?branch=master)](https://travis-ci.org/justincadburywong/chucknorrisidb)
+[![Coverage Status](https://coveralls.io/repos/github/justincadburywong/chucknorrisidb/badge.svg?branch=master)](https://coveralls.io/github/justincadburywong/chucknorrisidb?branch=master)
 
 # ChuckNorrisIDB
 An SMS service that sends Chuck Norris jokes to your phone via the Chuck Norris Internet Database API and Twilio.

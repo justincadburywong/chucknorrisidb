@@ -1,3 +1,5 @@
+require 'coveralls'
+Coveralls.wear!
 require 'rubygems'
 require 'webmock/rspec'
 require 'database_cleaner'
