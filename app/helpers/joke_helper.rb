@@ -6,7 +6,7 @@ helpers do
     # Joke.order("RANDOM()").first.joke  # is slow
     # Joke.offset(rand(Joke.count)).first.joke # is better/faster
     # Joke.where('categories LIKE ?', '%' + "#{category}" + '%').order("random()").first.joke
-    p Joke.where('categories LIKE ?', '%' + "#{category}" + '%').offset(rand(Joke.where('categories LIKE ?', '%' + "#{category}" + '%').count)).first.joke
+    Joke.where('categories LIKE ?', '%' + "#{category}" + '%').offset(rand(Joke.where('categories LIKE ?', '%' + "#{category}" + '%').count)).first.joke
   end
 
   def clean_joke(string)
