@@ -18,6 +18,7 @@ gem 'pry-byebug'
 gem 'shotgun'
 gem 'faker'
 gem 'twilio-ruby'
+gem 'rspec'
 
 group :test do
   gem 'rspec'
