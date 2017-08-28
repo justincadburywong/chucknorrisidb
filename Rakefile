@@ -1,6 +1,9 @@
 require 'rake'
-require 'rspec/core/rake_task'
-
+begin
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new(:spec)
+rescue LoadError
+end
 
 require ::File.expand_path('../config/environment', __FILE__)
 
@@ -110,7 +113,7 @@ namespace :db do
 
   desc "Drop, create, and migrate the database at #{DB_NAME}"
   task :reset => [:drop, :create, :migrate]
-  
+
   desc "Populate the database with dummy data by running db/seeds.rb"
   task :seed do
     require APP_ROOT.join('db', 'seeds.rb')
