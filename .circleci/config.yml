@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/chucknorridb
+    docker:
+      - image: circleci/ruby:2.6.5
+        environment:
+          TESTOPTS: "--ci-dir=/tmp/test-results"
+          APP_ENV: test
+    steps:
+      - checkout
+
+      # Restore bundle cache
+      - type: cache-restore
+        key: chucknorrisidb{{ checksum "Gemfile.lock" }}
+
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+
+      # Store bundle cache
+      - type: cache-save
+        key: chucknorrisidb{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+      # Run minitest
+      - type: shell
+        command: bundle exec rake
+
+      # Save artifacts
+      - type: store_test_results
+        path: /tmp/test-results
