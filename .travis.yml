@@ -9,7 +9,7 @@ before_install:
   - gem install bundler
 
 rvm:
-  - 2.6.0-dev
+  - 2.6.5
 
 script:
   - bundle exec rake db:create RACK_ENV="test"
