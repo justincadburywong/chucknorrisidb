@@ -11,7 +11,7 @@ gem 'sinatra-contrib'
 gem 'thin'
 gem 'dotenv'
 gem 'activesupport'
-gem "activerecord", ">= 4.2.7.1"
+gem 'activerecord'
 gem 'rake'
 gem 'bcrypt'
 gem 'pry-byebug'
