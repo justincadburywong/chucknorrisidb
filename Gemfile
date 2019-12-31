@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.5.1'
+ruby '2.6.5'
 # PostgreSQL driver
 gem 'pg'
 
@@ -21,7 +21,6 @@ gem 'twilio-ruby'
 gem 'rspec'
 
 group :test do
-  gem 'rspec'
   gem 'rack-test'
   gem 'webmock'
   gem 'database_cleaner'
