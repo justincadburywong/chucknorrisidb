@@ -24,6 +24,24 @@ helpers do
     end
   end
 
+  def fetch_dad_joke
+    uri = URI(@url)
+    # response = Net::HTTP.get_response(uri)
+    req = Net::HTTP::Get.new(uri)
+    req['content-type'] = 'text/plain'
+    req['user-agent'] = 'github.com/justincadburywong/chucknorrisidb'
+
+    response = Net::HTTP.start(uri.hostname, 443) {|http|
+      http.request(req)
+      p http.request(req)
+    }
+
+    # if response.code == "200"
+      p response.body
+      return response.body
+    # end
+  end
+
   # As a contingency to back up all of the jokes
   def save_joke(response)
     if !Joke.find_by(joke: response['joke'])
