@@ -8,7 +8,9 @@ post '/' do
   end
   body = params["Body"]
   p params
-  if body.downcase.include? 'nerdy'
+  if body.downcase.include? 'dad'
+    send_dad_text
+  elsif body.downcase.include? 'nerdy'
     send_nerdy_text
   elsif body.downcase.include? 'dirty'
     send_dirty_text
