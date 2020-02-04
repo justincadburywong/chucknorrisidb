@@ -28,10 +28,10 @@ helpers do
     uri = URI(@url)
     # response = Net::HTTP.get_response(uri)
     req = Net::HTTP::Get.new(uri)
-    req['content-type'] = 'text/plain'
+    req['accept'] = 'text/plain'
     req['user-agent'] = 'github.com/justincadburywong/chucknorrisidb'
 
-    response = Net::HTTP.start(uri.hostname, 443) {|http|
+    response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => true) {|http|
       http.request(req)
       p http.request(req)
     }
