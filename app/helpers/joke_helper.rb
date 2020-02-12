@@ -18,6 +18,7 @@ helpers do
     response = Net::HTTP.get_response(uri)
     if response.code == "200"
       joke = JSON.parse(response.body)['value']['joke']
+      p joke
       return clean_joke(joke)
     else
       clean_joke(read_joke(params[:Body]))
@@ -26,20 +27,18 @@ helpers do
 
   def fetch_dad_joke
     uri = URI(@url)
-    # response = Net::HTTP.get_response(uri)
     req = Net::HTTP::Get.new(uri)
     req['accept'] = 'text/plain'
     req['user-agent'] = 'github.com/justincadburywong/chucknorrisidb'
 
     response = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => true) {|http|
       http.request(req)
-      p http.request(req)
     }
 
-    # if response.code == "200"
+    if response.code == "200"
       p response.body
       return response.body
-    # end
+    end
   end
 
   # As a contingency to back up all of the jokes
